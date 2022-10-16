@@ -32,15 +32,15 @@ public class Employee {
 	private double raiseSalary() {
 		int currentYear = 2021;
 		int workYear = currentYear - this.hireYear; // how long they have been working as year
-		
+		double salary = this.salary+bonus()-tax();
 		double interest=0;
 		if(workYear<10) {
-			interest = (this.salary*5)/100;
+			interest = (salary*5)/100;
 		} else if (workYear>9 && workYear<20) {
-			interest = (this.salary*10)/100;
+			interest = (salary*10)/100;
 		}
 		else {
-			interest = (this.salary*15)/100;
+			interest = (salary*15)/100;
 		}
 		return interest;
 		
@@ -49,15 +49,18 @@ public class Employee {
 		int bonus=bonus();
 		double tax = tax();
 		double raisedSalary = raiseSalary();
-		return "Adı: " +this.name+"\n"+
+		
+		String output = "Adı: " +this.name+"\n"+
 				"Maaşı: " + this.salary +"\n"+
 				"Çalışma Saati: " + this.workHours+"\n"+
 				"Başlangıç Yılı: " +this.hireYear+"\n" + 
 				"Vergi: " + tax +"\n" +
 				"Bonus:" + bonus + "\n" +
 				"Maaş Artışı: " + raisedSalary +"\n"+
-				"Vergi ve Bonuslarla birlikte maaş (Maaş+ vergi + bonus): " +(this.salary + bonus + tax) +"\n" +
-				"Toplam Maaş (Maaş + vergi + bonus + maaş artışı): " + (this.salary+bonus+tax+raisedSalary);
+				"Vergi ve Bonuslarla birlikte maaş (Maaş- vergi + bonus): " +(this.salary + bonus - tax) +"\n" +
+				"Toplam Maaş (Maaş + bonus): " + (this.salary+bonus);
+		System.out.println(output);
+		return output;
 	}
 	
 	
